@@ -161,14 +161,3 @@ spec:
         value: do-not-auto-add-defaults
       - name: includelist
         value: "default-service-account,no-readiness-probe"
-  - name: deploy
-    runAfter:
-    - lint-yaml
-    taskRef:
-      name: deploy
-    workspaces:
-      - name: source
-        workspace: workspace
-    params:
-      - name: manifest-dir
-        value: $(params.k8-manifest-dir)
