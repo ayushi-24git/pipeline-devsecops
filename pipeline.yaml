@@ -24,6 +24,14 @@ spec:
     - name: low-vulnerabilities
     - name: output_format
     - name: repo-scan
+    - name: image-url
+      default: ""
+    - name: SKOPEO_IMAGE
+      default: quay.io/containers/skopeo:v1.1.0
+    - name: IMAGE_FROM_TLS_VERIFY
+      default: "true"
+    - name: TRIVY_IMAGE
+      default: docker.io/aquasec/trivy
   workspaces:
   - name: workspace
   tasks:
