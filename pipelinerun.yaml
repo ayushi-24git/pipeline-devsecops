@@ -40,7 +40,7 @@ spec:
     - name: output_format
       value: "json"
     - name: repo-scan
-      value: ""
+      value: "."
     - name: image-url
       value:  ""
     - name: SKOPEO_IMAGE
