@@ -1,18 +1,24 @@
 apiVersion: tekton.dev/v1beta1
+
 kind: Task
+
 metadata:
-  name: scan-image
+  name: scan-repo
 
 spec:
-  description: This task is for image scanning.
+  description: This task is for repository scanning.
+
+  
+
   params:
-    - name: image-scan
+    - name: repo-scan
       type: string
-      description: image to be scanned.
+      description: repo to be scanned.
       default: ""
+
   steps:
-    - name: scan-image-step
+    - name: scan-repo-step
       image: aquasec/trivy:0.16.0
       
       script:  |
-        trivy image $(params.image-scan)
+        trivy repo $(params.repo-scan)
