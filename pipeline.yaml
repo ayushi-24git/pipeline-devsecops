@@ -1,0 +1,174 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: devsecopspipeline
+spec:
+  params:
+    - name: git-repository-url
+      type: string
+    - name: image-name
+      type: string
+    - name: k8-manifest-dir
+      type: string
+    - name: language
+    - name: manifest-file-path
+    - name: pkg-installation-directory-path
+      default: dependency-directory
+    - name: report-file-path
+      default: crda-report.json
+    - name: crda-image
+    - name: total-vulnerabilities
+    - name: critical-vulnerabilities
+    - name: high-vulnerabilities
+    - name: medium-vulnerabilities
+    - name: low-vulnerabilities
+    - name: output_format
+    - name: image-scan
+  workspaces:
+  - name: workspace
+  tasks:
+  - name: clone-git-repo
+    workspaces:
+    - name: output
+      workspace: workspace
+    taskRef:
+      name: git-clone
+    params:
+      - name: url
+        value: $(params.git-repository-url)
+      - name: deleteExisting
+        value: "true"
+  - name: secret-detection
+    runAfter:
+    - clone-git-repo
+    taskRef:
+      name: gitleaks
+    workspaces:
+      - name: source
+        workspace: workspace
+    params:
+    - name: repo_path
+      value:  "."
+    - name: output_format
+      value: $(params.output_format)
+    - name: report_output_path
+      value: report.json
+    - name: args
+      value: ["--verbose", "--no-git"]
+  - name: setup-env
+    taskRef:
+      name: setup-env
+    runAfter:
+      - secret-detection
+    workspaces:
+    - name: output
+      workspace: workspace
+    params:
+      - name: language
+        value: $(params.language)
+      - name: pkg-installation-directory-path
+        value: $(params.pkg-installation-directory-path)
+      - name: manifest-file-path
+        value: $(params.manifest-file-path)
+      - name: image
+        value: $(params.crda-image)
+  - name: crda-task
+    taskRef:
+      name: crda-task
+    runAfter:
+      - setup-env
+    workspaces:
+      - name: output
+        workspace: workspace
+    params:
+      - name: language
+        value: $(params.language)
+      - name: pkg-installation-directory-path
+        value: $(params.pkg-installation-directory-path)
+      - name: manifest-file-path
+        value: $(params.manifest-file-path)
+      - name: image
+        value: $(params.crda-image)
+      - name: report-file-path
+        value: $(params.report-file-path)
+  - name: check-vulnerabilities
+    taskRef:
+      name: check-vulnerabilities
+    runAfter:
+      - crda-task
+    workspaces:
+      - name: output
+        workspace: workspace
+    params:
+      - name: total-vulnerabilities
+        value: $(params.total-vulnerabilities)
+      - name: critical-vulnerabilities
+        value: $(params.critical-vulnerabilities)
+      - name: high-vulnerabilities
+        value: $(params.high-vulnerabilities)
+      - name: medium-vulnerabilities
+        value: $(params.medium-vulnerabilities)
+      - name: low-vulnerabilities
+        value: $(params.low-vulnerabilities)
+      - name: report-file-path
+        value: $(params.report-file-path)
+      - name: image
+        value: $(params.crda-image)
+  - name: build-push
+    runAfter:
+    - check-vulnerabilities
+    taskRef:
+      name: build
+    workspaces:
+      - name: source
+        workspace: workspace
+    params:
+      - name : image-name
+        value: $(params.image-name)
+  - name: scan-image
+    taskRef:
+      name: scan-image
+    runAfter:
+    - build-push
+    params:
+      - name: image-scan
+        value: $(params.image-scan)
+  - name: check-dep-version
+    runAfter:
+    - scan-image
+    taskRef:
+      name: check-dep-version
+    workspaces:
+      - name: source
+        workspace: workspace
+    params:
+    - name: manifest
+      value: $(params.k8-manifest-dir)
+    - name: output
+      value: $(params.output_format)
+  - name: lint-yaml
+    runAfter:
+    - check-dep-version
+    taskRef:
+      name: lint-yaml
+    workspaces:
+      - name: source
+        workspace: workspace
+    params:
+      - name: manifest
+        value: $(params.k8-manifest-dir)
+      - name: default_option
+        value: do-not-auto-add-defaults
+      - name: includelist
+        value: "default-service-account,no-readiness-probe"
+  - name: deploy
+    runAfter:
+    - lint-yaml
+    taskRef:
+      name: deploy
+    workspaces:
+      - name: source
+        workspace: workspace
+    params:
+      - name: manifest-dir
+        value: $(params.k8-manifest-dir)
