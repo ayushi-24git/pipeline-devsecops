@@ -40,4 +40,4 @@ spec:
     - name: output_format
       value: "json"
     - name: repo-scan
-      value: ""
+      value: "."
