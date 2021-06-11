@@ -141,9 +141,23 @@ spec:
     params:
       - name: repo-scan
         value: $(params.repo-scan)
+  - name: scan-registry
+    runAfter:
+    - scan-repo
+    taskRef:
+      name: scan-registry
+     params:
+       - name: image-url
+         value: $(params.image-url)
+       - name: SKOPEO_IMAGE
+         value: $(params.SKOPEO_IMAGE)
+       - name: IMAGE_FROM_TLS_VERIFY
+         value: $(params.IMAGE_FROM_TLS_VERIFY)
+       - name: TRIVY_IMAGE
+         value: $(params.TRIVY_IMAGE)
   - name: check-dep-version
     runAfter:
-    - scan-image
+    - scan-registry
     taskRef:
       name: check-dep-version
     workspaces:
