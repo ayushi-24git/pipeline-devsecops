@@ -135,7 +135,7 @@ spec:
         value: $(params.repo-scan)
   - name: check-dep-version
     runAfter:
-    - scan-image
+    - scan-repo
     taskRef:
       name: check-dep-version
     workspaces:
