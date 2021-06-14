@@ -35,17 +35,17 @@ spec:
         #!/bin/sh
         #Based on the ecosystem install dependencies
         printf "Installing dependencies...\n"
-        if [ $(params.language) == "1" ]
+        if [ $(params.language) == "golang" ]
         then
           go mod vendor
-        elif [ $(params.language) == "2" ]
+        elif [ $(params.language) == "npm" ]
         then
           mv $(params.manifest-file-path) $(params.pkg-installation-directory-path)
           cd $(params.pkg-installation-directory-path)
           npm install
           cd ..
           mv $(params.pkg-installation-directory-path)/$(params.manifest-file-path) .
-        elif [ $(params.language) == "3" ]
+        elif [ $(params.language) == "python" ]
         then
           pip3 install --target=$(params.pkg-installation-directory-path) \
           -r $(params.manifest-file-path) --upgrade
