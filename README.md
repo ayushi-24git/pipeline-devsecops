@@ -86,7 +86,15 @@ Apply the pipeline yamls as:
 Now, start the pipeline by:
 `tkn pipeline start devsecopspipeline`
 
-Enter all the suitable parameters. Your pipeline has successfully started.
-Once done, check the logs using the following command:
+## Pipeline parameters
+The following parameters will be asked henceforth. 
+* 
+* 
+* 
+* 
+* **repo-scan** : The repository on which you want to perform security checks.
+
+## Check logs
+Now, the pipeline has successfully started. You can check the logs using the following command:
 
 `tkn pipelinerun logs <name-of-the-pipelinerun>`
