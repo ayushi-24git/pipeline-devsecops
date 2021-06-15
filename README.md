@@ -77,7 +77,8 @@ Apply all the mentioned tasks in the repositorry above. Example format:
 
 `kubectl apply -f https://raw.githubusercontent.com/ayushi-24git/pipeline-dso/main/Tasks/SCAN_REPO/scan-repo.yaml` 
 
-Apply the pipeline yamls as:
+Apply the pipeline yamls as:  
+
 `kubectl apply -f https://raw.githubusercontent.com/ayushi-24git/pipeline-dso/pipeline.yaml`
 `kubectl apply -f https://raw.githubusercontent.com/ayushi-24git/pipeline-dso/main/pipelinerun.yaml`
 
