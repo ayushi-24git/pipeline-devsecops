@@ -79,7 +79,8 @@ Apply all the mentioned tasks in the repositorry above. Example format:
 
 Apply the pipeline yamls as:  
 
-`kubectl apply -f https://raw.githubusercontent.com/ayushi-24git/pipeline-dso/pipeline.yaml`
+`kubectl apply -f https://raw.githubusercontent.com/ayushi-24git/pipeline-dso/pipeline.yaml`  
+
 `kubectl apply -f https://raw.githubusercontent.com/ayushi-24git/pipeline-dso/main/pipelinerun.yaml`
 
 Now, start the pipeline by:
