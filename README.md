@@ -15,6 +15,9 @@ Git clone repo task clones given repository url into the workspace.
 * [secret-detection](https://github.com/ayushi-24git/pipeline-dso/blob/main/Tasks/GITLEAKS/gitleaks.yaml)
 Secret detection task is responsible for detecting secrets like api keys, passwords present in the repository.
 
+* [scan-repo](https://github.com/ayushi-24git/pipeline-dso/blob/main/Tasks/SCAN_REPO/scan-repo.yaml)
+Scan-repo task is responsible for scanning the given repository for CVEs (Common Vulnerabilities and Exposures) and creates a vulnerability report.
+
 
 ### CRDA
 * [setup-env](https://github.com/ayushi-24git/pipeline-dso/blob/main/Tasks/CRDA/setup-env.yaml)
@@ -32,8 +35,6 @@ You can read more about the need, prerequistes and working of these three tasks 
 * [build-push](https://github.com/urvashigupta7/Go-Server/blob/master/ci/task/build-push.yaml)
 Build push task is responsible for building the image from docker file and pushing it to the docker registry.
 
-
-* scan-repo
 
 
 * [check-dep-version](https://github.com/ayushi-24git/pipeline-dso/blob/main/Tasks/KUBERNETES_MANIFEST_CHECKS/check-dep-version.yaml)
