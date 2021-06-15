@@ -16,7 +16,7 @@ Git clone repo task clones given repository url into the workspace.
 Secret detection task is responsible for detecting secrets like api keys, passwords present in the repository.
 
 * [scan-repo](https://github.com/ayushi-24git/pipeline-dso/blob/main/Tasks/SCAN_REPO/scan-repo.yaml)
-Scan-repo task is responsible for scanning the given repository for CVEs (Common Vulnerabilities and Exposures) and creates a vulnerability report. Working of Trivy can be better understood [here](https://rastogee-ayushi.medium.com/trivy-keep-your-artifacts-vulnerability-free-6dce292134e5)
+Scan-repo task is responsible for scanning the given repository for CVEs (Common Vulnerabilities and Exposures) and creates a vulnerability report. Working of Trivy can be better understood [here](https://rastogee-ayushi.medium.com/trivy-keep-your-artifacts-vulnerability-free-6dce292134e5).
 
 
 ### CRDA
