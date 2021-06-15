@@ -65,7 +65,7 @@ Workspace is used as a common filesystem between tasks and used for inputs and o
 ## Setting up cluster
 Set up a cluster using minikube by doing a `minikube start`. 
 
-## Set up Tekton
+## Setting up Tekton
 Install tekton with the following command after setting up the cluster
 
 `kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml`
