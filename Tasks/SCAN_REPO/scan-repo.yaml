@@ -8,7 +8,7 @@ metadata:
 spec:
   description: This task is for repository scanning.
 
-  
+
 
   params:
     - name: repo-scan
@@ -19,6 +19,6 @@ spec:
   steps:
     - name: scan-repo-step
       image: aquasec/trivy:0.18.3
-      
+
       script:  |
         trivy repo $(params.repo-scan)

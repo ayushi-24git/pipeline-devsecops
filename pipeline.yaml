@@ -55,11 +55,19 @@ spec:
       value: report.json
     - name: args
       value: ["--verbose", "--no-git"]
+  - name: scan-repo
+    taskRef:
+      name: scan-repo
+    runAfter:
+    - secret-detection
+    params:
+      - name: repo-scan
+        value: $(params.repo-scan)
   - name: setup-env
     taskRef:
       name: setup-env
     runAfter:
-      - secret-detection
+      - scan-repo
     workspaces:
     - name: output
       workspace: workspace
@@ -125,17 +133,9 @@ spec:
     params:
       - name : image-name
         value: $(params.image-name)
-  - name: scan-repo
-    taskRef:
-      name: scan-repo
-    runAfter:
-    - build-push
-    params:
-      - name: repo-scan
-        value: $(params.repo-scan)
   - name: check-dep-version
     runAfter:
-    - scan-repo
+    - build-push
     taskRef:
       name: check-dep-version
     workspaces:
