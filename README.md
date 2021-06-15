@@ -29,7 +29,7 @@ CRDA task uses RedHat CodeReady Dependency Tool to scan and check if any vulnera
 * [check-vulnerabilities](https://github.com/ayushi-24git/pipeline-dso/blob/main/Tasks/CRDA/setup-env.yaml)
 Check vulnerabilities task reads the report generated in CRDA task and checks if all the vulnerabilities are within limits or not. It breaks the build if the vulnerabilities are not within the limits.
 
-You can read more about the need, prerequistes and working of these three tasks please go through [CRDA](https://github.com/tektoncd/catalog/blob/edb15d9f4334822f319393ad271bf11106eca926/task/redhat-codeready-dependency-analysis/0.3/README.md)
+You can read more about the need, prerequistes and working of these three tasks please go through [CRDA](https://github.com/tektoncd/catalog/blob/edb15d9f4334822f319393ad271bf11106eca926/task/redhat-codeready-dependency-analysis/0.3/README.md).
 
 
 * [build-push](https://github.com/urvashigupta7/Go-Server/blob/master/ci/task/build-push.yaml)
@@ -38,11 +38,11 @@ Build push task is responsible for building the image from docker file and pushi
 
 
 * [check-dep-version](https://github.com/ayushi-24git/pipeline-dso/blob/main/Tasks/KUBERNETES_MANIFEST_CHECKS/check-dep-version.yaml)
-Check dep version task is responsible for finding out the deprecated or removed apiVersions in kubernetes manifest files. Read more about the task [here](https://github.com/urvashigupta7/kubernetes_manifest_checks/tree/master/tasks/pluto)
+Check dep version task is responsible for finding out the deprecated or removed apiVersions in kubernetes manifest files. Read more about the task [here](https://github.com/urvashigupta7/kubernetes_manifest_checks/tree/master/tasks/pluto).
 
 
 * [lint-yaml](https://github.com/ayushi-24git/pipeline-dso/blob/main/Tasks/KUBERNETES_MANIFEST_CHECKS/lint-yaml.yaml)
-Lint yaml task checks for misconfigurations in kubernetes objects by scanning the kubernetes manifest files. Read more about the task [here](https://github.com/urvashigupta7/kubernetes_manifest_checks/tree/master/tasks/kube_linter)
+Lint yaml task checks for misconfigurations in kubernetes objects by scanning the kubernetes manifest files. Read more about the task [here](https://github.com/urvashigupta7/kubernetes_manifest_checks/tree/master/tasks/kube_linter).
 
 
 
