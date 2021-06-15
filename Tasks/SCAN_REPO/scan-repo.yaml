@@ -18,7 +18,7 @@ spec:
 
   steps:
     - name: scan-repo-step
-      image: aquasec/trivy:0.16.0
+      image: aquasec/trivy:0.18.3
       
       script:  |
         trivy repo $(params.repo-scan)
