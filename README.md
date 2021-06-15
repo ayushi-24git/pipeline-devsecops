@@ -60,3 +60,31 @@ For build and push task docker credentials are required (to push the image). bui
 ## Workspaces
 Workspace is used as a common filesystem between tasks and used for inputs and outputs of task, in workspace dependencies are installed for further usage while running the task.
 * **source** : A Workspace containing your source directory.
+
+
+## Setting up cluster
+Set up a cluster using minikube by doing a `minikube start`. 
+
+## Set up Tekton
+Install tekton with the following command after setting up the cluster
+
+`kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml`
+
+This will install all the necessary Tekton components to get started.
+
+## Applying the Tasks and Pipeline yamls
+Apply all the mentioned tasks in the repositorry above. Example format:
+
+`kubectl apply -f https://raw.githubusercontent.com/ayushi-24git/pipeline-dso/main/Tasks/SCAN_REPO/scan-repo.yaml` 
+
+Apply the pipeline yamls as:
+`kubectl apply -f https://raw.githubusercontent.com/ayushi-24git/pipeline-dso/pipeline.yaml`
+`kubectl apply -f https://raw.githubusercontent.com/ayushi-24git/pipeline-dso/main/pipelinerun.yaml`
+
+Now, start the pipeline by:
+`tkn pipeline start devsecopspipeline`
+
+Enter all the suitable parameters. Your pipeline has successfully started.
+Once done, check the logs using the following command:
+
+`tkn pipelinerun logs <name-of-the-pipelinerun>`
