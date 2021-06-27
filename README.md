@@ -1,6 +1,6 @@
 ## Pipeline-dso
 
-The goal of this repository is to integrate security within a DevOps pipeline (here, Tekton).
+The goal of this repository is to integrate security within a DevOps pipeline (here, Tekton). Check [this](https://rastogee-ayushi.medium.com/implementing-sec-in-devsecops-256dbd0ab304) article for further understanding.
 
 A conventional CI/CD pipeline mostly has tasks like fetch, build, test, deploy. We need to integrate security into the pipeline. This could be further extended to the pipeline being failed if the security check is not fulfilled and right set of people could be notified.
 
